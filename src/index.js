@@ -3,6 +3,16 @@ const { request } = require('graphql-request')
 
 /** @jsx h */
 
+
+const query = `{
+  allProducts {
+    name
+    community {
+      name
+    }
+  }
+}`
+
 app({
   state: {
     count: 0,
@@ -21,7 +31,8 @@ app({
   actions: {
     down: state => {
       console.log('down clicked')
-      console.log(request)
+      
+      request('https://api.graph.cool/simple/v1/MobcutAlpha', query).then(data => console.log(data))
       return { count: state.count - 1 }
     },
     up: state => ({ count: state.count + 1 }),
@@ -34,5 +45,3 @@ app({
     
   }
 })
-
-// https://api.graph.cool/simple/v1/MobcutAlpha
