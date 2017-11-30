@@ -36,6 +36,9 @@ module.exports = function webpackStuff(env) {
         include: [
           path.resolve(__dirname, './'),
         ],
+        exclude: [
+          path.resolve(__dirname, './node_modules'),
+        ]
       }, {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({

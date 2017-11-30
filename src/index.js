@@ -1,9 +1,15 @@
-const { h, app } = require('hyperapp')
-const { request } = require('graphql-request')
+import { h, app } from 'hyperapp'
+import { request } from 'graphql-request'
+import {Config, CognitoIdentityCredentials} from 'aws-sdk';
+import {
+  CognitoUserPool,
+  CognitoUserAttribute
+} from 'amazon-cognito-identity-js';
+import appConfig from "./config";
 
 /** @jsx h */
 
-
+// graphql init query
 const query = `{
   allProducts {
     name
@@ -13,6 +19,18 @@ const query = `{
   }
 }`
 
+// aws init config
+Config.region = appConfig.region
+Config.credentials = new CognitoIdentityCredentials({
+  IdentityPoolId: appConfig.IdentityPoolId
+});
+
+const userPool = new CognitoUserPool({
+  UserPoolId: appConfig.UserPoolId,
+  ClientId: appConfig.ClientId,
+});
+
+// hyperapp init
 app({
   state: {
     count: 0,

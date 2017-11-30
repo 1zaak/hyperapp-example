@@ -4,6 +4,8 @@
   "description": "The frontend for Mobcut",
   "main": "index.js",
   "dependencies": {
+    "amazon-cognito-identity-js": "^1.28.0",
+    "aws-sdk": "^2.161.0",
     "graphql-request": "^1.4.0",
     "hyperapp": "^0.16.0"
   },
