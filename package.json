@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "amazon-cognito-identity-js": "^1.28.0",
+    "auth0-js": "^8.11.3",
     "aws-sdk": "^2.161.0",
     "graphql-request": "^1.4.0",
     "hyperapp": "^0.16.0"
@@ -30,7 +31,6 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --env production",
-    "wipe": "rm -rf .git && git init && git add . && git commit -m 'initial commit'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Izaak Khaliq (1zaak)",

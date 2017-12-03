@@ -6,6 +6,7 @@ import {
   CognitoUserAttribute
 } from 'amazon-cognito-identity-js';
 import appConfig from "./config";
+import { login, handleAuthentication } from "./Auth/auth"
 
 /** @jsx h */
 
@@ -18,17 +19,6 @@ const query = `{
     }
   }
 }`
-
-// aws init config
-Config.region = appConfig.region
-Config.credentials = new CognitoIdentityCredentials({
-  IdentityPoolId: appConfig.IdentityPoolId
-});
-
-const userPool = new CognitoUserPool({
-  UserPoolId: appConfig.UserPoolId,
-  ClientId: appConfig.ClientId,
-});
 
 // hyperapp init
 app({
@@ -53,7 +43,11 @@ app({
       request('https://api.graph.cool/simple/v1/MobcutAlpha', query).then(data => console.log(data))
       return { count: state.count - 1 }
     },
-    up: state => ({ count: state.count + 1 }),
+    up: state => { 
+      console.log('up clicked', login)
+      login()
+      return { count: state.count + 1 }
+    },
     addProduct: state => {
         console.log('products', state.products)
     
