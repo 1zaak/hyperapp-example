@@ -55,6 +55,10 @@ html {
       border: 1px solid #00caff;
     }
   }
+
+  div {
+    background: aquamarine;
+  }
   
   button + button {
     margin-left: 3px;
