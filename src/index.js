@@ -29,32 +29,32 @@ app({
     loggedIn: false,
   },
   actions: {
-    down: state => {
+    down: () => state => {
       console.log("down clicked", isAuthenticated)
       
       request("https://api.graph.cool/simple/v1/MobcutAlpha", query).then(data => console.log(data))
       return { count: state.count - 1 }
     },
-    up: state => { 
+    up: () => state => { 
       console.log("up clicked")
       
       return { count: state.count + 1 }
     },
-    addProduct: state => {
+    addProduct: () => state => {
         console.log("products", state.products)
     
         return { products: state.products.concat({ name: "DJI Spark", price: 200000})}
     },
-    reset: state => ({ count: 0}),
-    login: state => {
+    reset: () => state => ({ count: 0 }),
+    login: () => state => {
       login()
     },
-    logout: state => {
+    logout: () => state => {
       logout()
     }
   },
-  view: (state, actions) =>
-  <main oncreate={ console.log('Oncreate!', history)}>  
+  view: state => actions =>
+  <main>  
     <h1>{state.count}</h1>    
     <button 
       onclick={actions.down} 

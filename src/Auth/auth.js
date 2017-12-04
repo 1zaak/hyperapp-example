@@ -1,6 +1,5 @@
 import auth0 from 'auth0-js'
 import config from './config'
-import history from './history'
 
 const auth = new auth0.WebAuth(config);
 
