@@ -22,11 +22,12 @@ const helloView = () =>
 </div>
 
 // hyperapp init
-app({
+const actions = app({
   state: {
     count: 0,
     products: [],
     loggedIn: false,
+    location: location.state
   },
   actions: {
     down: () => state => {
@@ -51,7 +52,8 @@ app({
     },
     logout: () => state => {
       logout()
-    }
+    },
+    location: location.actions
   },
   view: state => actions =>
   <main>  
@@ -72,3 +74,5 @@ app({
     
   </main>
 })
+
+const unsubscribe = location.subscribe(actions.location)
