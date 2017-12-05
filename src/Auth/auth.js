@@ -1,5 +1,6 @@
 import auth0 from 'auth0-js'
 import config from './config'
+import history from "./history"
 
 const auth = new auth0.WebAuth(config);
 
@@ -10,9 +11,8 @@ export function login() {
 export function handleAuthentication() {
     auth.parseHash((err, authResult) => {
         if (authResult && authResult.accessToken && authResult.idToken) {
-          this.setSession(authResult);
+          setSession(authResult);
           history.replace('/home');
-          console.log('history', history)
         } else if (err) {
           history.replace('/home');
           console.log('err', err);

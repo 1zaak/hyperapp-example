@@ -56,7 +56,7 @@ const actions = app({
     location: location.actions
   },
   view: state => actions =>
-  <main>  
+  <main oncreate={ handleAuthentication() }>  
     <h1>{state.count}</h1>    
     <button 
       onclick={actions.down} 
