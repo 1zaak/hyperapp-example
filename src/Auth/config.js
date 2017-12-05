@@ -4,5 +4,5 @@ export default {
     redirectUri: 'http://localhost:8080',
     audience: 'https://izaak.auth0.com/userinfo',
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile email'
 }

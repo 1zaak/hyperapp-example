@@ -1,7 +1,7 @@
 import { h, app } from "hyperapp"
 import { location, Switch, Route, Link } from "@hyperapp/router"
 import { request } from "graphql-request"
-import { login, handleAuthentication, setSession, logout, isAuthenticated } from "./Auth/auth"
+import { login, handleAuthentication, setSession, logout, isAuthenticated, getUserProfile } from "./Auth/auth"
 
 /** @jsx h */
 
@@ -37,7 +37,7 @@ const actions = app({
       return { count: state.count - 1 }
     },
     up: () => state => { 
-      console.log("up clicked")
+      console.log("up clicked", state.profile)
       
       return { count: state.count + 1 }
     },
@@ -52,11 +52,15 @@ const actions = app({
     },
     logout: () => state => {
       logout()
+      return { profile: {} }
+    },
+    init: () => state => {
+      handleAuthentication();
     },
     location: location.actions
   },
   view: state => actions =>
-  <main oncreate={ handleAuthentication() }>  
+  <main oncreate={ actions.init }>  
     <h1>{state.count}</h1>    
     <button 
       onclick={actions.down} 
@@ -64,10 +68,12 @@ const actions = app({
     <button onclick={actions.up}>＋</button>
     <button onclick={actions.reset}>Reset</button>
     <button onclick={actions.addProduct}>Add DJI Spark</button>
+   
+    <button onclick={ !isAuthenticated() ? actions.login : actions.logout}>
+      { !isAuthenticated() ? "Login" : "Logout" }
+    </button>
     
-    <button onclick={actions.login}>Login</button>
-    <button onclick={actions.logout}>Logout</button>
-       
+       Name: { getUserProfile() && getUserProfile().name }
     <Link to="/hello">Hello Page</Link>
 
     <Route path="/hello" view={helloView} />
