@@ -39,7 +39,7 @@ export function setSession(authResult) {
     localStorage.removeItem('mobcut_access_token');
     localStorage.removeItem('mobcut_id_token');
     localStorage.removeItem('mobcut_expires_at');
-    localStorage.removeItem('mobcut_user_profile');
+    localStorage.removeItem('mobcut_user');
     // navigate to the home route
     history.replace('/');
   }
