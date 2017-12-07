@@ -1,7 +1,9 @@
 import { h, app } from "hyperapp"
 import { location, Switch, Route, Link } from "@hyperapp/router"
 import { request } from "graphql-request"
-import { login, handleAuthentication, setSession, logout, isAuthenticated, getUserProfile } from "./Auth/auth"
+import { login, handleAuthentication, setSession, logout, getUserProfile } from "./auth/auth"
+import NavView from "./navigation/view"
+import MainTile from "./main-tile/view"
 
 /** @jsx h */
 
@@ -60,31 +62,12 @@ const actions = app({
     location: location.actions
   },
   view: state => actions =>
-  <main class="container" oncreate={ actions.init }>  
-    <h1 class="title">
-      Hello World
-    </h1>
-    <p class="subtitle">
-      My first website with <strong>Bulma</strong>!
-    </p>
-    <h1>{state.count}</h1>    
-    <button 
-      onclick={actions.down} 
-      disabled={state.count <= 0}>ー</button>
-    <button onclick={actions.up}>＋</button>
-    <button onclick={actions.reset}>Reset</button>
-    <button onclick={actions.addProduct}>Add DJI Spark</button>
-   
-    <button onclick={ !isAuthenticated() ? actions.login : actions.logout}>
-      { !isAuthenticated() ? "Login" : "Logout" }
-    </button>
-    
-       Name: { getUserProfile() && getUserProfile().name }
-    <Link to="/hello">Hello Page</Link>
-
-    <Route path="/hello" render={helloView} />
-    
-  </main>
+  <div oncreate={ actions.init }>
+  <NavView login={actions.login} logout={actions.logout}/>
+  <section class="section">
+    <MainTile/>
+  </section>
+  </div>
 })
 
 const unsubscribe = location.subscribe(actions.location)
