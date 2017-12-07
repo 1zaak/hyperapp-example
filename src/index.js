@@ -82,7 +82,7 @@ const actions = app({
        Name: { getUserProfile() && getUserProfile().name }
     <Link to="/hello">Hello Page</Link>
 
-    <Route path="/hello" view={helloView} />
+    <Route path="/hello" render={helloView} />
     
   </main>
 })
