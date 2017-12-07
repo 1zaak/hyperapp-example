@@ -26,11 +26,11 @@ export function setSession(authResult) {
     localStorage.setItem('mobcut_access_token', authResult.accessToken);
     localStorage.setItem('mobcut_id_token', authResult.idToken);
     localStorage.setItem('mobcut_expires_at', expiresAt);
-    // navigate to the home route
-    history.replace('/');
 
     auth.client.userInfo(authResult.accessToken, function(err, user) {
       localStorage.setItem('mobcut_user', JSON.stringify(user));
+      // navigate to the home route
+      history.replace('/');
     });
   }
 
