@@ -60,7 +60,13 @@ const actions = app({
     location: location.actions
   },
   view: state => actions =>
-  <main oncreate={ actions.init }>  
+  <main class="container" oncreate={ actions.init }>  
+    <h1 class="title">
+      Hello World
+    </h1>
+    <p class="subtitle">
+      My first website with <strong>Bulma</strong>!
+    </p>
     <h1>{state.count}</h1>    
     <button 
       onclick={actions.down} 

@@ -1,14 +1,14 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const MinifyPlugin = require('babel-minify-webpack-plugin');
 const webpack = require('webpack');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 const plugins = [
-  new ExtractTextPlugin({
-    filename: './bundle.css',
-    allChunks: true,
-  }),
-  new webpack.optimize.ModuleConcatenationPlugin(),
+  // new ExtractTextPlugin({
+  //   filename: './bundle.css',
+  //   allChunks: true,
+  // }),
+  // new webpack.optimize.ModuleConcatenationPlugin(),
 ];
 
 module.exports = function webpackStuff(env) {
@@ -16,11 +16,10 @@ module.exports = function webpackStuff(env) {
 
   return {
     entry: [
-      './src/index.js',
-      './styles/app.css',
+      './src/index.js'
     ],
     output: {
-      filename: 'bundle.js',
+      filename: 'bin/bundle.js',
       path: path.resolve(__dirname, './'),
     },
     module: {
@@ -35,15 +34,7 @@ module.exports = function webpackStuff(env) {
         },
         include: [
           path.resolve(__dirname, './'),
-        ],
-        exclude: [
-          path.resolve(__dirname, './node_modules'),
         ]
-      }, {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: 'css-loader?importLoaders=1',
-        }),
       }],
     },
     plugins,
