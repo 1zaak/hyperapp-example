@@ -1,9 +1,11 @@
 import { h, app } from "hyperapp"
 import { location, Switch, Route, Link } from "@hyperapp/router"
 import { request } from "graphql-request"
-import { login, handleAuthentication, setSession, logout, getUserProfile } from "./auth/auth"
+import { login, handleAuthentication, setSession, logout, getUserProfile, isAuthenticated } from "./auth/auth"
 import NavView from "./navigation/view"
 import MainTile from "./main-tile/view"
+import Products from "./products/view"
+import "./styles/main.scss"
 
 /** @jsx h */
 
@@ -63,9 +65,14 @@ const actions = app({
   },
   view: state => actions =>
   <div oncreate={ actions.init }>
-  <NavView login={actions.login} logout={actions.logout}/>
+  <NavView login={actions.login} logout={actions.logout} addProduct={actions.addProduct}/>
   <section class="section">
-    <MainTile/>
+    {
+      !isAuthenticated() && <MainTile/>
+    }
+    {
+      isAuthenticated() && <Products/>
+    }
   </section>
   </div>
 })

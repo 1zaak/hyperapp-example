@@ -1,11 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 const plugins = [
   // new ExtractTextPlugin({
-  //   filename: './bundle.css',
+  //   filename: 'bin/bundle.css',
   //   allChunks: true,
   // }),
   // new webpack.optimize.ModuleConcatenationPlugin(),
@@ -35,6 +35,9 @@ module.exports = function webpackStuff(env) {
         include: [
           path.resolve(__dirname, './'),
         ]
+      },{
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
       }],
     },
     plugins,

@@ -2,12 +2,12 @@ import { h } from "hyperapp"
 import { isAuthenticated, getUserProfile } from "../auth/auth"
 
 /** @jsx h */
-export default ({ login, logout }) =>  
-<nav class="navbar is-transparent is-fixed-top">
+export default ({ login, logout, addProduct }) =>  
+<nav class="navbar is-transparent is-fixed-top level">
     <div class="container">
       <div class="navbar-brand">
         <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28"/>
+          <h1><b class="title">Mobcut</b></h1>
         </a>
         <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
           <span></span>
@@ -18,54 +18,48 @@ export default ({ login, logout }) =>
     
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="https://bulma.io/">
-            Home
+          <a class="navbar-item" href="#">
+            Cuts
           </a>
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="/documentation/overview/start/">
-              Docs
-            </a>
+            <div class="navbar-link">
+              Communities
+            </div>
             <div class="navbar-dropdown is-boxed">
-              <a class="navbar-item" href="/documentation/overview/start/">
-                Overview
+              <a class="navbar-item" href="#">
+                Watches
               </a>
-              <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
-                Modifiers
-              </a>
-              <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-                Columns
-              </a>
-              <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-                Layout
-              </a>
-              <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-                Form
+              <a class="navbar-item" href="#">
+                Drones
               </a>
               <hr class="navbar-divider"/>
-              <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-                Elements
+              <a class="navbar-item" href="#">
+                DYI (Coming soon)
               </a>
-              <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-                Components
+              <a class="navbar-item" href="#">
+                Cars Accessories (Coming soon)
               </a>
             </div>
           </div>
+          <a class="navbar-item" href="#">
+            Discussions
+          </a>
+          <a class="navbar-item" href="#">
+            Surveys
+          </a>
+          <p class="navbar-item">
+          <button class="button is-outlined is-primary" onclick={ addProduct }>Create Survey</button>
+          </p>
         </div>
+        
     
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
-              <p class="control">
-              { getUserProfile() &&                
-                <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://localhost:4000" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms">
                 <span class="icon">
-                  <i class="fa fa-twitter"></i>
-                </span>
-                <span>{  getUserProfile().name }</span>
-              </a>
-              }             
-              </p>
-              <button class="button is-primary" onclick={ !isAuthenticated() ? login : logout}>
+                <i class="fa fa-home is-large"></i>
+              </span>      
+              <button class="button is-link" onclick={ !isAuthenticated() ? login : logout}>
                   { !isAuthenticated() ? "Login" : "Logout" }
               </button>            
             </div>

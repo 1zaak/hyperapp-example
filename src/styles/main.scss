@@ -15,7 +15,7 @@ $blue: #06bcef;
 $pink: #ff8080;
 $pink-invert: #fff;
 // Update the sans-serif font family
-$family-sans-serif: "Helvetica", "Arial", sans-serif;
+$family-sans-serif: "Camphor", "Helvetica", "Arial", sans-serif;
 // 3. Set the derived variables
 // Use the new pink as the primary color
 $primary: $pink;
@@ -24,3 +24,5 @@ $primary-invert: $pink-invert;
 
 
 @import "../../node_modules/bulma/bulma";
+@import "font.scss";
+
