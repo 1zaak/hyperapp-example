@@ -2,10 +2,9 @@ import { h, app } from "hyperapp"
 import { location, Switch, Route, Link } from "@hyperapp/router"
 import { request } from "graphql-request"
 import { login, handleAuthentication, setSession, logout, getUserProfile, isAuthenticated } from "./auth/auth"
-import chunk from "lodash/chunk"
 import NavView from "./navigation/view"
 import MainTile from "./main-tile/view"
-import Product from "./product/view"
+import {Products} from "./product/view"
 import "./styles/main.scss"
 
 /** @jsx h */
@@ -19,21 +18,6 @@ const query = `{
     }
   }
 }`
-
-// Products UI 
-const Products = ({products}) => {
-  let rows = chunk(products, 4)
-  return rows.map(row=>{
-    return <ProductRow row={row}/>
-  })     
-}
-
-const ProductRow = ({row}) =>
-  <div class="columns">
-    {row.map(({id, name, price})=>{      
-      return <div class="column is-one-quarter-desktop"><Product id={id} name={name} price={price}/></div>
-    })}
-  </div>
 
 // hyperapp init
 const actions = app({
