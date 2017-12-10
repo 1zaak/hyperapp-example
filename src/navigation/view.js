@@ -2,21 +2,21 @@ import { h } from "hyperapp"
 import { isAuthenticated, getUserProfile } from "../auth/auth"
 
 /** @jsx h */
-export default ({ login, logout, addProduct }) =>  
+export default ({ login, logout, addProduct, togglemobileNavbarMenu, mobileNavbarMenu }) =>  
 <nav class="navbar is-transparent is-fixed-top level">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
+        <a class="navbar-item">
           <h1><b class="title">Mobcut</b></h1>
         </a>
-        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <div class="navbar-burger burger" onclick={togglemobileNavbarMenu}>
           <span></span>
           <span></span>
           <span></span>
         </div>
       </div>
     
-      <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div id="navbarExampleTransparentExample" class={mobileNavbarMenu.className}>
         <div class="navbar-start">
           <a class="navbar-item" href="#">
             Cuts

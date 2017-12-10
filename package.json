@@ -8,7 +8,8 @@
     "auth0-js": "^8.12.0",
     "graphql-request": "^1.4.0",
     "history": "^4.7.2",
-    "hyperapp": "^0.16.2"
+    "hyperapp": "^0.16.2",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
