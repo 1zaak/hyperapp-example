@@ -3,7 +3,6 @@ import { h } from "hyperapp"
 /** @jsx h */
 export default ({ id, name, price }) =>
 {
-    console.log('ProductView', id, name, price)
     return <div class="card" id={id}>
     <div class="card-image">
         <figure class="image is-4by3">

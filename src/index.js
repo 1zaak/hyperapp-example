@@ -23,13 +23,10 @@ const query = `{
 // Products UI 
 const Products = ({products}) => {
   let rows = chunk(products, 4)
-  return <div class="products">
-  {    
-    rows.map(row=>{
-      return <ProductRow row={row}/>
-    })
-  }
-  </div>    
+  return rows.map(row=>{
+    return <ProductRow row={row}/>
+  })
+     
 }
 
 const ProductRow = ({row}) =>
@@ -47,22 +44,10 @@ const actions = app({
     location: location.state,
     mobileNavbarMenu: { toggled: false, className: "navbar-menu" }
   },
-  actions: {
-    down: () => state => {
-      console.log("down clicked", isAuthenticated)
-      
-      request("https://api.graph.cool/simple/v1/MobcutAlpha", query).then(data => console.log(data))
-      return { count: state.count - 1 }
-    },
-    up: () => state => { 
-      console.log("up clicked", state.profile)
-      
-      return { count: state.count + 1 }
-    },
+  actions: {    
     addProduct: () => state => {
         return { products: state.products.concat({ id: state.products.length + 1, name: "DJI Spark", price: 200000})}
     },
-    reset: () => state => ({ count: 0 }),
     login: () => state => {
       login()
     },
@@ -105,3 +90,4 @@ const actions = app({
 })
 
 const unsubscribe = location.subscribe(actions.location)
+// request("https://api.graph.cool/simple/v1/MobcutAlpha", query).then(data => console.log(data))
