@@ -25,8 +25,7 @@ const Products = ({products}) => {
   let rows = chunk(products, 4)
   return rows.map(row=>{
     return <ProductRow row={row}/>
-  })
-     
+  })     
 }
 
 const ProductRow = ({row}) =>
