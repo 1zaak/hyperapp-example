@@ -12,7 +12,6 @@ export function handleAuthentication() {
     auth.parseHash((err, authResult) => {
         if (authResult && authResult.accessToken && authResult.idToken) {
           setSession(authResult);
-          history.replace('/');
         } else if (err) {
           history.replace('/');
           console.log('err', err);
@@ -30,7 +29,7 @@ export function setSession(authResult) {
     auth.client.userInfo(authResult.accessToken, function(err, user) {
       localStorage.setItem('mobcut_user', JSON.stringify(user));
       // navigate to the home route
-      history.replace('/');
+      history.replace('/all-products');
     });
   }
 

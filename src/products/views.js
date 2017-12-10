@@ -31,22 +31,23 @@ export const ProductCard = ({ id, name, price }) =>
         
         </div>
     </div>   
-
   
-export const ProductRow = ({row}) =>
-    <div class="columns">
+export const ProductsRow = ({row}) => {
+    console.log('debug:ProductRow')
+    return <div class="columns">
         {row.map(({id, name, price})=>{
         return (<div class="column is-one-quarter-desktop">
             <ProductCard id={id} name={name} price={price}/>
             </div>)
         })}
     </div>
-
-
-
-export const Products = ({products}) => {
+}
+    
+// Add .. => props => .. for route. 
+// TODO: Solve issue why ProductsRow not rendering when using props/route
+export const Products = ({products}) => {    
     let rows = chunk(products, 4)
     return rows.map(row=>{
-        return <ProductRow row={row}/>
-    })     
+        return <ProductsRow row={row}/>
+    })
 }

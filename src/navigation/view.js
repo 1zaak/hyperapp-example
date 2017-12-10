@@ -1,14 +1,15 @@
 import { h } from "hyperapp"
 import { isAuthenticated, getUserProfile } from "../auth/auth"
+import { Link } from "@hyperapp/router"
 
 /** @jsx h */
 export default ({ login, logout, addProduct, togglemobileNavbarMenu, mobileNavbarMenu }) =>  
 <nav class="navbar is-transparent is-fixed-top level">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item">
+        <Link to="/" class="navbar-item">
           <h1><b class="title">Mobcut</b></h1>
-        </a>
+        </Link>        
         <div class="navbar-burger burger" onclick={togglemobileNavbarMenu}>
           <span></span>
           <span></span>
@@ -18,20 +19,14 @@ export default ({ login, logout, addProduct, togglemobileNavbarMenu, mobileNavba
     
       <div id="navbarExampleTransparentExample" class={mobileNavbarMenu.className}>
         <div class="navbar-start">
-          <a class="navbar-item" href="#">
-            Cuts
-          </a>
+          <Link to="/cuts" class="navbar-item">Cuts</Link>
           <div class="navbar-item has-dropdown is-hoverable">
             <div class="navbar-link">
               Communities
-            </div>
+            </div>                        
             <div class="navbar-dropdown is-boxed">
-              <a class="navbar-item" href="#">
-                Watches
-              </a>
-              <a class="navbar-item" href="#">
-                Drones
-              </a>
+              <Link to="/communiy/watches" class="navbar-item">Watches</Link>
+              <Link to="/communiy/gadgets" class="navbar-item">Gadgets</Link>              
               <hr class="navbar-divider"/>
               <a class="navbar-item" href="#">
                 DYI (Coming soon)
