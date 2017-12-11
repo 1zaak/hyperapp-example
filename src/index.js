@@ -2,23 +2,11 @@ import { h, app } from "hyperapp"
 import { location, Switch, Route, Link, Redirect } from "@hyperapp/router"
 import { request } from "graphql-request"
 import { login, handleAuthentication, setSession, logout, getUserProfile, isAuthenticated } from "./_auth/auth"
-import NavView from "./navigation/view"
+import Navigation from "./navigation/view"
 import Routes from "./routes"
 import "./_styles/main.scss"
 
 /** @jsx h */
-
-// graphql init query
-const query = `{
-  allProducts {
-    name
-    community {
-      name
-    }
-  }
-}`
-
-// hyperapp init
 const actions = app({
   state: {
     count: 0,
@@ -57,7 +45,7 @@ const actions = app({
   },
   view: state => actions =>
   <div oncreate={ actions.init }>
-    <NavView 
+    <Navigation 
       login={actions.login} 
       logout={actions.logout} 
       addProduct={actions.addProduct} 
@@ -76,4 +64,13 @@ const unsubscribe = location.subscribe(actions.location)
 
 // Sample working GraphQL request
 //
+// graphql init query
+// const query = `{
+//   allProducts {
+//     name
+//     community {
+//       name
+//     }
+//   }
+// }`
 // request("https://api.graph.cool/simple/v1/MobcutAlpha", query).then(data => console.log(data))

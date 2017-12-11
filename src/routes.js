@@ -3,20 +3,17 @@ import { isAuthenticated } from "./_auth/auth"
 import {Communities} from "./communities/views"
 import Unprotected from "./unprotected/view"
 import { Route, Redirect } from "@hyperapp/router"
+import CommunityView from "./communities/community/view"
+import ProductView from "./product/buy/view"
+import ProductDiscussionView from "./product/discuss/view"
+import SurveysView from "./surveys/view"
+import SurveysCommunityView from "./surveys/community/view"
+import CreateSurveyView from "./create-survey/view"
+import DiscussionsView from "./discussions/view"
+import CommunityDiscussionView from "./discussions/community/view"
+import CreateDiscussionView from "./create-discussion/view"
 
 /** @jsx h */
-const AllCommunittiesView = () => <div>All Communitties View</div>
-// const MyCommunittiesView = () => <div>My Communitties View</div>
-const CommunityView = ({match}) => <div>Community {match.params.communityName} View</div>
-const ProductView = ({match}) => <div>Product {match.params.productName} View</div>
-const ProductDiscussionView = ({match}) => <div>Discussion for {match.params.productName} View</div>
-const SurveysView = () => <div>Surveys View</div>
-const SurveysCommunityView = ({match}) => <div>Survey for {match.params.communityName} View</div>
-const CreateSurveyView = () => <div>Create Survey View</div>
-const DiscussionsView = () => <div>Show All Discussions View</div>
-const CommunityDiscussionView = () => <div>Community Discussion View</div>
-const DiscussView = () => <div>Create Discussion View</div>
-
 export default ({state}) => 
     <div class="container">
         <Route path="/all-communities" render={()=>{
@@ -24,6 +21,9 @@ export default ({state}) =>
         }} />    
         <Route path="/community/:communityName" render={({match})=>{
             return isAuthenticated() ? <CommunityView match={match}/> : <Unprotected/>
+        }} />
+        <Route path="/community/:communityName/discussion" render={({match})=>{
+            return isAuthenticated() ? <CommunityDiscussionView match={match}/> : <Unprotected/>
         }} />
         <Route path="/buy/:productName" render={({match})=>{
             return isAuthenticated() ? <ProductView match={match}/> : <Unprotected/>
@@ -44,7 +44,7 @@ export default ({state}) =>
             return isAuthenticated() ? <DiscussionsView/> : <Unprotected/>
         }} />
         <Route path="/create-discussion" render={()=>{
-            return isAuthenticated() ? <DiscussView/> : <Unprotected/>
+            return isAuthenticated() ? <CreateDiscussionView/> : <Unprotected/>
         }} />
         <Route path="/" render={()=>{    
             return isAuthenticated() ? <Redirect to="/all-communities"/> : <Unprotected/>                

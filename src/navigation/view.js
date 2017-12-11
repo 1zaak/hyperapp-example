@@ -38,7 +38,6 @@ export default ({ login, logout, addProduct, togglemobileNavbarMenu, mobileNavba
           <button class="button is-outlined is-primary" onclick={ addProduct }>Create Survey</button>
           </p>
         </div>
-        
     
         <div class="navbar-end">
           <div class="navbar-item">
