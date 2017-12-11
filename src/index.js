@@ -67,10 +67,10 @@ const actions = app({
       mobileNavbarMenu={state.mobileNavbarMenu}
     />  
     <section class="section">
-      <div class="container">        
-        {     
-          isAuthenticated() && <Products products={state.products}/>          
-        }
+      <div class="container">
+          <Route path="/all-products" render={()=>{
+            return isAuthenticated() && <Products products={state.products}/>
+          }} />
       </div>
     </section>
   </div>
