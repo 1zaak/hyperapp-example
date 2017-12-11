@@ -10,7 +10,8 @@ export function login() {
 
 export function handleAuthentication() {
     auth.parseHash((err, authResult) => {
-        if (authResult && authResult.accessToken && authResult.idToken) {
+        if (authResult && authResult.accessToken && authResult.idToken) {          
+          history.replace('/all-communities');
           setSession(authResult);
         } else if (err) {
           history.replace('/');
@@ -28,8 +29,7 @@ export function setSession(authResult) {
 
     auth.client.userInfo(authResult.accessToken, function(err, user) {
       localStorage.setItem('mobcut_user', JSON.stringify(user));
-      // navigate to the home route
-      history.replace('/all-products');
+      
     });
   }
 

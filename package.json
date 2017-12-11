@@ -38,7 +38,7 @@
   },
   "scripts": {
     "css-deploy": "npm run css-build && npm run css-postcss",
-    "css-build": "node-sass ./src/styles/main.scss ./bin/bundle.css",
+    "css-build": "node-sass ./src/_styles/main.scss ./bin/bundle.css",
     "css-postcss": "postcss --use autoprefixer --output ./bin/bundle.css ./bin/bundle.css",
     "css-watch": "npm run css-build -- --watch",
     "build": "npm run css-deploy | webpack --env production",

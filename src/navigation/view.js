@@ -1,5 +1,5 @@
 import { h } from "hyperapp"
-import { isAuthenticated, getUserProfile } from "../auth/auth"
+import { isAuthenticated, getUserProfile } from "../_auth/auth"
 import { Link } from "@hyperapp/router"
 
 /** @jsx h */
@@ -19,30 +19,22 @@ export default ({ login, logout, addProduct, togglemobileNavbarMenu, mobileNavba
     
       <div id="navbarExampleTransparentExample" class={mobileNavbarMenu.className}>
         <div class="navbar-start">
-          <Link to="/cuts" class="navbar-item">Cuts</Link>
+          <Link to="/all-communities" class="navbar-item">Discover</Link>
           <div class="navbar-item has-dropdown is-hoverable">
             <div class="navbar-link">
               Communities
             </div>                        
             <div class="navbar-dropdown is-boxed">
-              <Link to="/communiy/watches" class="navbar-item">Watches</Link>
-              <Link to="/communiy/gadgets" class="navbar-item">Gadgets</Link>              
+              <Link to="/community/watches" class="navbar-item">Watches</Link>
+              <Link to="/community/gadgets" class="navbar-item">Gadgets</Link>              
               <hr class="navbar-divider"/>
-              <a class="navbar-item" href="#">
-                DYI (Coming soon)
-              </a>
-              <a class="navbar-item" href="#">
-                Cars Accessories (Coming soon)
-              </a>
+              <Link to="/community/diy" class="navbar-item">DYI (Coming soon)</Link>
+              <Link to="/community/cars-accessories" class="navbar-item">Cars Accessories (Coming soon)</Link>              
             </div>
           </div>
-          <a class="navbar-item" href="#">
-            Discussions
-          </a>
-          <a class="navbar-item" href="#">
-            Surveys
-          </a>
-          <p class="navbar-item">
+          <Link to="/discussions" class="navbar-item">Discussions</Link>
+          <Link to="/surveys" class="navbar-item">Surveys</Link>                                  
+          <p class="navbar-item">            
           <button class="button is-outlined is-primary" onclick={ addProduct }>Create Survey</button>
           </p>
         </div>
