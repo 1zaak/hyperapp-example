@@ -1,10 +1,17 @@
 import { h, app } from "hyperapp"
 import { location, Switch, Route, Link, Redirect } from "@hyperapp/router"
-import { request } from "graphql-request"
+import pell from 'pell'
 import { login, handleAuthentication, setSession, logout, getUserProfile, isAuthenticated } from "./_auth/auth"
 import Navigation from "./navigation/view"
 import Routes from "./routes"
 import "./_styles/main.scss"
+
+const RemoteInstance = require('directus-sdk-javascript/remote');
+
+const client = new RemoteInstance({
+  url: 'http://cms.mobcut.com/api/1.1/',
+  accessToken: ["wS0Zb1CXaKHGFRPL25glQU41eNJ4vFJo"]
+});
 
 /** @jsx h */
 const actions = app({
@@ -16,6 +23,9 @@ const actions = app({
   },
   actions: {    
     addProduct: () => state => {
+      client.getItems('product', "filters[community]=1&filters[community]=2")
+      .then(res => console.log('products success',res))
+      .catch(err => console.log('products error',err));
       return { products: state.products.concat({ id: state.products.length + 1, name: "DJI Spark", price: 200000})}
     },
     login: () => state => {

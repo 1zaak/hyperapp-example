@@ -1,12 +1,13 @@
 {
-    "plugins": [
-      ["transform-react-jsx", { "pragma": "h" }]
-    ],
-    "presets": [
-      ["es2015", {
-        "es2015": {
-          "modules": false
-        }
-      }],
-    ],
-  }
+  "plugins": [
+    ["transform-react-jsx", { "pragma": "h" }]
+  ],
+  "presets": [
+    ["es2015", {
+      "es2015": {
+        "modules": false
+      }
+    }],
+    ["stage-0"]
+  ]
+}
