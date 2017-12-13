@@ -2,6 +2,7 @@ import { h } from "hyperapp"
 
 /** @jsx h */
 export default () => 
+<div class="columns">
 <div class="container">
 <div class="tile is-ancestor">
 <div class="tile is-vertical is-8">
@@ -46,6 +47,7 @@ export default () =>
       </div>
     </div>
   </article>
+</div>
 </div>
 </div>
 </div>

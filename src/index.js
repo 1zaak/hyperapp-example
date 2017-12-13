@@ -1,12 +1,11 @@
 import { h, app } from "hyperapp"
-import { location, Switch, Route, Link, Redirect } from "@hyperapp/router"
+import { location } from "@hyperapp/router"
 import pell from 'pell'
-import { login, handleAuthentication, setSession, logout, getUserProfile, isAuthenticated } from "./_auth/auth"
+import { login, handleAuthentication, logout } from "./_auth/auth"
 import Navigation from "./navigation/view"
 import Routes from "./routes"
 import "./_styles/main.scss"
-
-const RemoteInstance = require('directus-sdk-javascript/remote');
+import RemoteInstance from "directus-sdk-javascript/remote"
 
 const client = new RemoteInstance({
   url: 'http://cms.mobcut.com/api/1.1/',
