@@ -1,23 +1,28 @@
 import { h } from "hyperapp"
-import { isAuthenticated } from "./_auth/auth"
-import {Communities} from "./communities/views"
-import Unprotected from "./unprotected/view"
+import { isAuthenticated } from "../_auth/auth"
+import {Communities} from "../communities/views"
+import Unprotected from "../unprotected/view"
 import { Route, Redirect } from "@hyperapp/router"
-import CommunityView from "./communities/community/view"
-import ProductView from "./product/buy/view"
-import ProductDiscussionView from "./product/discuss/view"
-import SurveysView from "./surveys/view"
-import SurveysCommunityView from "./surveys/community/view"
-import CreateSurveyView from "./create-survey/view"
-import DiscussionsView from "./discussions/view"
-import CommunityDiscussionView from "./discussions/community/view"
-import CreateDiscussionView from "./create-discussion/view"
+import CommunityView from "../communities/community/view"
+import ProductView from "../product/buy/view"
+import ProductDiscussionView from "../product/discuss/view"
+import SurveysView from "../surveys/view"
+import SurveysCommunityView from "../surveys/community/view"
+import CreateSurveyView from "../create-survey/view"
+import DiscussionsView from "../discussions/view"
+import CommunityDiscussionView from "../discussions/community/view"
+import CreateDiscussionView from "../create-discussion/view"
 
 /** @jsx h */
-export default ({state}) => 
+export default ({ state, getAllProducts }) => 
     <div class="container">
         <Route path="/all-communities" render={()=>{
-            return isAuthenticated() ? <Communities products={state.products}/> : <Unprotected/>
+            if (isAuthenticated())  {
+                console.log('test') 
+                return <div oncreate={getAllProducts}><Communities products={state.products} /> </div>
+            } else {
+                return <Unprotected/>
+            }
         }} />    
         <Route path="/community/:communityName" render={({match})=>{
             return isAuthenticated() ? <CommunityView match={match}/> : <Unprotected/>
