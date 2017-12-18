@@ -1,5 +1,5 @@
 import { h } from "hyperapp"
-import chunk from "lodash/chunk"
+import { chunk } from "../_utils/index"
 
 /** @jsx h */
 export const ProductCard = ({ id, name, price }) =>
