@@ -42,7 +42,7 @@ export const ProductsRow = ({row}) => {
     </div>
 }
     
-export const Communities = ({products, fetchAllProducts}) => {
+export const Communities = ({products}) => {
     let rows = chunk(products, 4)
     return rows.map(row=>(<ProductsRow row={row}/>))
 }

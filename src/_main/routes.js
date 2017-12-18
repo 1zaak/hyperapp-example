@@ -18,7 +18,7 @@ export default ({ state, actions }) =>
     <div class="container">
         <Route path="/all-communities" render={()=>{
             if (isAuthenticated())  {
-                return <div oncreate={actions.fetchAllProducts}> <Communities products={state.products} fetchAllProducts={actions.fetchAllProducts}/></div>
+                return <div oncreate={actions.fetchAllProducts}> <Communities products={state.products}/></div>
             } else {
                 return <Unprotected/>
             }
