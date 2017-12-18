@@ -14,12 +14,11 @@ import CommunityDiscussionView from "../discussions/community/view"
 import CreateDiscussionView from "../create-discussion/view"
 
 /** @jsx h */
-export default ({ state, getAllProducts }) => 
+export default ({ state, actions }) => 
     <div class="container">
         <Route path="/all-communities" render={()=>{
             if (isAuthenticated())  {
-                console.log('test') 
-                return <div oncreate={getAllProducts}><Communities products={state.products} /> </div>
+                return <div oncreate={actions.fetchAllProducts}> <Communities products={state.products} fetchAllProducts={actions.fetchAllProducts}/></div>
             } else {
                 return <Unprotected/>
             }

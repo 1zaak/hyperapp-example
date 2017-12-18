@@ -16,6 +16,7 @@ module.exports = function webpackStuff(env) {
 
   return {
     entry: [
+      'babel-polyfill',
       './src/index.js'
     ],
     output: {
@@ -41,5 +42,11 @@ module.exports = function webpackStuff(env) {
       }],
     },
     plugins,
+    devServer: {
+      port: 8080,
+      historyApiFallback: {
+        index: 'index.html',
+      }
+    }
   };
 };

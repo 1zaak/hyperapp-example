@@ -14,7 +14,7 @@ export default (state, actions) =>
     />  
     <section class="section">
         <div class="container">
-        <Routes state={state} getAllProducts={actions.getAllProducts}/>       
+        <Routes state={state} actions={actions}/>       
         </div>
     </section>
     </div>

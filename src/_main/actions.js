@@ -2,45 +2,39 @@ import { location } from "@hyperapp/router"
 import client from "./api-client"
 import { login, handleAuthentication, logout } from "../_auth/auth"
 
-export default {    
-    addProduct: () => state => {
-    client.getItems('product', "filters[community]=1&filters[community]=2")
-    .then(res => console.log('products success',res))
-    .catch(err => console.log('products error',err));
-    return { products: state.products.concat({ id: state.products.length + 1, name: "DJI Spark", price: 200000})}
+export default {
+    fetchAllProducts: query => async (state, actions) => {   
+        actions.setProducts(await client.getItems('product')
+            .then(res => {
+                return res.data
+            })
+            .catch(err => console.log('products error',err))
+        )
     },
-    getAllProducts: (from = 0, to = 10) => state => {      
-    let products = client.getItems('product')
-        .then(res => {
-            console.log('data returned', res.data)
-            return res.data
-        })
-        .catch(err => console.log('products error',err));
-    console.log('state.products',{ products: [...state.products, ...products] })
-    return { products: [...state.products, ...products] }
-    },
+    setProducts: (products) => state => ({ products }),
+    toggleFetching: isFetching => ({ isFetching }),
     login: () => state => {
-    login()
+        login()
     },
     logout: () => state => {
-    logout()
-    return { profile: {} }
+        logout()
+        return { profile: {} }
     },
     init: () => state => {
-    handleAuthentication();
+        handleAuthentication();
     },
     togglemobileNavbarMenu: _ => state => {     
-    let toggled = !state.mobileNavbarMenu.toggled
-    if (toggled) {
-        return { mobileNavbarMenu: { 
-        toggled: toggled, className: "navbar-menu is-active" 
-        }} 
-    } else {
-        return { mobileNavbarMenu: { 
-        toggled: toggled, 
-        className: "navbar-menu" 
-        }}
-    }   
+        let toggled = !state.mobileNavbarMenu.toggled
+        if (toggled) {
+            return { mobileNavbarMenu: { 
+            toggled: toggled, className: "navbar-menu is-active" 
+            }} 
+        } else {
+            return { mobileNavbarMenu: { 
+            toggled: toggled, 
+            className: "navbar-menu" 
+            }}
+        }   
     },
     location: location.actions
 }
