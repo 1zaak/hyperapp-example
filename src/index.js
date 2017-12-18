@@ -13,14 +13,14 @@ const client = new RemoteInstance({
 });
 
 /** @jsx h */
-const actions = app({
-  state: {
+const actions = app(
+  {
     count: 0,
     products: [],
     location: location.state,
     mobileNavbarMenu: { toggled: false, className: "navbar-menu" }
   },
-  actions: {    
+  {    
     addProduct: () => state => {
       client.getItems('product', "filters[community]=1&filters[community]=2")
       .then(res => console.log('products success',res))
@@ -52,7 +52,7 @@ const actions = app({
     },
     location: location.actions
   },
-  view: state => actions =>
+  (state, actions) =>
   <div oncreate={ actions.init }>
     <Navigation 
       login={actions.login} 
@@ -66,20 +66,8 @@ const actions = app({
         <Routes state={state}/>       
       </div>
     </section>
-  </div>
-})
+  </div>,
+  document.body
+)
 
 const unsubscribe = location.subscribe(actions.location)
-
-// Sample working GraphQL request
-//
-// graphql init query
-// const query = `{
-//   allProducts {
-//     name
-//     community {
-//       name
-//     }
-//   }
-// }`
-// request("https://api.graph.cool/simple/v1/MobcutAlpha", query).then(data => console.log(data))
