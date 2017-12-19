@@ -42,7 +42,13 @@ export const ProductsRow = ({row}) => {
     </div>
 }
     
-export const Communities = ({products}) => {
+export const Communities = ({products, fetchAllProducts}) => {
+    console.log('Communities view rendered')
     let rows = chunk(products, 4)
-    return rows.map(row=>(<ProductsRow row={row}/>))
+    return <div oncreate={fetchAllProducts}>
+        {
+            rows.map(row=>(<ProductsRow row={row}/>))
+        }
+    </div>
+     
 }

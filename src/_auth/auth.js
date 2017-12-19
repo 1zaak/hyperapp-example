@@ -5,7 +5,9 @@ import history from "./history"
 const auth = new auth0.WebAuth(config);
 
 export function login() {
-    auth.authorize();
+    auth.authorize({
+      redirectUri: "http://localhost:8080/callback"
+    });
 }
 
 export function handleAuthentication() {

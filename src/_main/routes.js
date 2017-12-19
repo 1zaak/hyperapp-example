@@ -1,5 +1,5 @@
 import { h } from "hyperapp"
-import { isAuthenticated } from "../_auth/auth"
+import { isAuthenticated, handleAuthentication } from "../_auth/auth"
 import {Communities} from "../communities/views"
 import Unprotected from "../unprotected/view"
 import { Route, Redirect } from "@hyperapp/router"
@@ -18,7 +18,7 @@ export default ({ state, actions }) =>
     <div class="container">
         <Route path="/all-communities" render={()=>{
             if (isAuthenticated())  {
-                return <div oncreate={actions.fetchAllProducts}> <Communities products={state.products}/></div>
+                return <Communities fetchAllProducts={actions.fetchAllProducts} products={state.products}/>
             } else {
                 return <Unprotected/>
             }
@@ -52,5 +52,10 @@ export default ({ state, actions }) =>
         }} />
         <Route path="/" render={()=>{    
             return isAuthenticated() ? <Redirect to="/all-communities"/> : <Unprotected/>                
-        }} />        
+        }} />   
+        <Route path="/callback" render={()=>{    
+            console.log('callback running')
+            handleAuthentication()           
+        }} />   
+
     </div>

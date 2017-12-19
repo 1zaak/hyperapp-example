@@ -4,7 +4,7 @@ import Routes from "./routes"
 
 /** @jsx h */
 export default (state, actions) =>
-    <div oncreate={ actions.init }>
+    <div>
     <Navigation 
         login={actions.login} 
         logout={actions.logout} 
@@ -14,7 +14,7 @@ export default (state, actions) =>
     />  
     <section class="section">
         <div class="container">
-        <Routes state={state} actions={actions}/>       
+            <Routes state={state} actions={actions}/>       
         </div>
     </section>
     </div>
