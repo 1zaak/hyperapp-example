@@ -53,9 +53,7 @@ export default ({ state, actions }) =>
         <Route path="/" render={()=>{    
             return isAuthenticated() ? <Redirect to="/all-communities"/> : <Unprotected/>                
         }} />   
-        <Route path="/callback" render={()=>{    
-            console.log('callback running')
+        <Route path="/callback" render={()=>{
             handleAuthentication()           
-        }} />   
-
+        }} />
     </div>
