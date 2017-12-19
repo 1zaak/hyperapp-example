@@ -51,6 +51,5 @@ export const Communities = ({products, fetchAllProducts}) => {
         {
             rows.map(row=>(<ProductsRow row={row}/>))
         }
-    </div>
-     
+    </div>     
 }

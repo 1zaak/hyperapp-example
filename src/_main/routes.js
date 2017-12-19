@@ -9,7 +9,7 @@ import ProductDiscussionView from "../product/discuss/view"
 import SurveysView from "../surveys/view"
 import SurveysCommunityView from "../surveys/community/view"
 import CreateSurveyView from "../create-survey/view"
-import DiscussionsView from "../discussions/view"
+import {DiscussionsView, DiscussionView} from "../discussions/views"
 import CommunityDiscussionView from "../discussions/community/view"
 import CreateDiscussionView from "../create-discussion/view"
 
@@ -43,6 +43,9 @@ export default ({ state, actions }) =>
         }} />
         <Route path="/create-survey" render={()=>{
             return isAuthenticated() ? <CreateSurveyView/> : <Unprotected/>
+        }} />
+        <Route path="/discussion/:discussionId" render={({match})=>{
+            return isAuthenticated() ? <DiscussionView match={match}/> : <Unprotected/>
         }} />
         <Route path="/discussions" render={()=>{
             return isAuthenticated() ? <DiscussionsView/> : <Unprotected/>
