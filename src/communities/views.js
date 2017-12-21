@@ -12,7 +12,7 @@ import { Link } from "@hyperapp/router"
 
 /** @jsx h */
 export const ProductCard = ({ id, product_name, community, image }) =>
-    <Link to={"/buy/" + product_name}>
+    <Link to={"/buy/" + id}>
         <div class="card" id={id}>
             <div class="card-image">
                 <figure class="image is-4by3">

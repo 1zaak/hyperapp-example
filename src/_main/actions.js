@@ -1,17 +1,11 @@
 import { location } from "@hyperapp/router"
 import client from "./api-client"
 import { login, handleAuthentication, logout } from "../_auth/auth"
+import CommunitiesActions from "../communities/actions"
 
 export default {
-    fetchAllProducts: query => async (state, actions) => {   
-        actions.setProducts(await client.getItems('product')
-            .then(res => {
-                return res.data
-            })
-            .catch(err => console.log('products error',err))
-        )
-    },
-    setProducts: (products) => state => ({ products }),
+    fetchAllProducts: CommunitiesActions.fetchAllProducts,
+    setProducts: CommunitiesActions.setProducts,
     toggleFetching: isFetching => ({ isFetching }),
     login: () => state => {
         login()

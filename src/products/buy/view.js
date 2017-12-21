@@ -10,7 +10,7 @@ export default ({match}) =>
                     {match.params.productName}
                 </h1>
                 <h2 class="subtitle">
-                    Primary bold subtitle
+                    {match.params.id}
                 </h2>
                 </div>
             </div>
