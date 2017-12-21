@@ -8,10 +8,10 @@ import ProductView from "../products/buy/view"
 import ProductDiscussionView from "../products/discuss/view"
 import SurveysView from "../surveys/view"
 import SurveysCommunityView from "../surveys/community/view"
-import CreateSurveyView from "../create-survey/view"
+import CreateSurveyView from "../surveys/create-survey/view"
 import {DiscussionsView, DiscussionView} from "../discussions/views"
 import CommunityDiscussionView from "../discussions/community/view"
-import CreateDiscussionView from "../create-discussion/view"
+import CreateDiscussionView from "../discussions/create-discussion/view"
 
 /** @jsx h */
 export default ({ state, actions }) => 
