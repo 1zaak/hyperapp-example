@@ -23,14 +23,15 @@ export default ({ state, actions }) =>
                 return <Unprotected/>
             }
         }} />    
+        <Route path="/buy/:productId" render={({match})=>{
+            console.log('buy product')
+            return isAuthenticated() ? <ProductView match={match} fetchProduct={actions.fetchProduct} product={state.product}/> : <Unprotected/>
+        }} />
         <Route path="/community/:communityName" render={({match})=>{
             return isAuthenticated() ? <CommunityView match={match}/> : <Unprotected/>
         }} />
         <Route path="/community/:communityName/discussion" render={({match})=>{
             return isAuthenticated() ? <CommunityDiscussionView match={match}/> : <Unprotected/>
-        }} />
-        <Route path="/buy/:productName" render={({match})=>{
-            return isAuthenticated() ? <ProductView match={match}/> : <Unprotected/>
         }} />
         <Route path="/buy/:productName/discuss" render={()=>{
             return isAuthenticated() ? <ProductDiscussionView/> : <Unprotected/>

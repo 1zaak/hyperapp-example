@@ -2,10 +2,13 @@ import { location } from "@hyperapp/router"
 import client from "./api-client"
 import { login, handleAuthentication, logout } from "../_auth/auth"
 import CommunitiesActions from "../communities/actions"
+import ProductActions from "../products/buy/actions"
 
 export default {
     fetchAllProducts: CommunitiesActions.fetchAllProducts,
     setProducts: CommunitiesActions.setProducts,
+    fetchProduct: ProductActions.fetchProduct,
+    setProduct: ProductActions.setProduct,
     toggleFetching: isFetching => ({ isFetching }),
     login: () => state => {
         login()

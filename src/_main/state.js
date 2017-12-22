@@ -1,8 +1,8 @@
 import { location } from "@hyperapp/router"
 
 export default {
-    count: 0,
     products: [],
+    product: {},
     location: location.state,
     mobileNavbarMenu: { toggled: false, className: "navbar-menu" }
 }
