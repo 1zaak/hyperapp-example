@@ -3,12 +3,15 @@ import client from "./api-client"
 import { login, handleAuthentication, logout } from "../_auth/auth"
 import CommunitiesActions from "../communities/actions"
 import ProductActions from "../products/buy/actions"
+import DiscussionsActions from "../discussions/actions"
 
 export default {
-    fetchAllProducts: CommunitiesActions.fetchAllProducts,
+    fetchProducts: CommunitiesActions.fetchProducts,
     setProducts: CommunitiesActions.setProducts,
     fetchProduct: ProductActions.fetchProduct,
     setProduct: ProductActions.setProduct,
+    fetchDiscussions: DiscussionsActions.fetchDiscussions,
+    setDiscussions: DiscussionsActions.setDiscussions,
     toggleFetching: isFetching => ({ isFetching }),
     login: () => state => {
         login()

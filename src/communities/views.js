@@ -46,9 +46,9 @@ export const ProductsRow = ({row}) => {
     </div>
 }
     
-export const Communities = ({products, fetchAllProducts, isFetching}) => {
+export const Communities = ({products, fetchProducts, isFetching}) => {
     let rows = chunk(products, 4)
-    return <div oncreate={fetchAllProducts}>
+    return <div key="communities" oncreate={fetchProducts}>
         {
             !isFetching ? rows.map(row=>(<ProductsRow row={row}/>)) : <Loader colour={"black"}/>
         }

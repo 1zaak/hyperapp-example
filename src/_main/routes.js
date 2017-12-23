@@ -9,7 +9,8 @@ import ProductDiscussionView from "../products/discuss/view"
 import SurveysView from "../surveys/view"
 import SurveysCommunityView from "../surveys/community/view"
 import CreateSurveyView from "../surveys/create-survey/view"
-import {DiscussionsView, DiscussionView} from "../discussions/views"
+import DiscussionsView from "../discussions/views"
+import DiscussionView from "../discussions/discussion/view"
 import CommunityDiscussionView from "../discussions/community/view"
 import CreateDiscussionView from "../discussions/create-discussion/view"
 
@@ -19,7 +20,7 @@ export default ({ state, actions }) =>
         <Route path="/all-communities" render={()=>{
             if (isAuthenticated())  {
                 return <Communities 
-                    fetchAllProducts={actions.fetchAllProducts} 
+                    fetchProducts={actions.fetchProducts} 
                     products={state.products}
                     isFetching={state.isFetching}
                 />
@@ -28,13 +29,25 @@ export default ({ state, actions }) =>
             }
         }} />    
         <Route path="/buy/:productId" render={({match})=>{
-            console.log('buy product')
             return isAuthenticated() ? <ProductView 
                 match={match} 
                 fetchProduct={actions.fetchProduct} 
                 product={state.product}
                 isFetching={state.isFetching}
             /> : <Unprotected/>
+        }} />
+        <Route path="/discussions" render={()=>{
+            return isAuthenticated() ? <DiscussionsView
+                fetchDiscussions={actions.fetchDiscussions} 
+                discussions={state.discussions}
+                isFetching={state.isFetching}
+            /> : <Unprotected/>
+        }} />
+        <Route path="/discussion/:discussionId" render={({match})=>{
+            return isAuthenticated() ? <DiscussionView match={match}/> : <Unprotected/>
+        }} />
+        <Route path="/create-discussion" render={()=>{
+            return isAuthenticated() ? <CreateDiscussionView/> : <Unprotected/>
         }} />
         <Route path="/community/:communityName" render={({match})=>{
             return isAuthenticated() ? <CommunityView match={match}/> : <Unprotected/>
@@ -53,15 +66,6 @@ export default ({ state, actions }) =>
         }} />
         <Route path="/create-survey" render={()=>{
             return isAuthenticated() ? <CreateSurveyView/> : <Unprotected/>
-        }} />
-        <Route path="/discussion/:discussionId" render={({match})=>{
-            return isAuthenticated() ? <DiscussionView match={match}/> : <Unprotected/>
-        }} />
-        <Route path="/discussions" render={()=>{
-            return isAuthenticated() ? <DiscussionsView/> : <Unprotected/>
-        }} />
-        <Route path="/create-discussion" render={()=>{
-            return isAuthenticated() ? <CreateDiscussionView/> : <Unprotected/>
         }} />
         <Route path="/" render={()=>{    
             return isAuthenticated() ? <Redirect to="/all-communities"/> : <Unprotected/>                

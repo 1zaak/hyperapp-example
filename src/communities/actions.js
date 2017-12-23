@@ -1,7 +1,8 @@
 import client from "../_main/api-client"
 
 export default {
-    fetchAllProducts: query => async (state, actions) => {   
+    fetchProducts: query => async (state, actions) => {   
+        console.log('fetchProducts')
         actions.toggleFetching(true)
         actions.setProducts(await client.getItems('product')
             .then(res => {

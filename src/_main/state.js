@@ -6,4 +6,7 @@ export default {
     location: location.state,
     mobileNavbarMenu: { toggled: false, className: "navbar-menu" },
     isFetching: false,
+    surveys: [],
+    survey: {},
+    discussions: []
 }
