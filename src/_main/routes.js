@@ -4,7 +4,7 @@ import {Communities} from "../communities/views"
 import Unprotected from "../unprotected/view"
 import { Route, Redirect } from "@hyperapp/router"
 import CommunityView from "../communities/community/view"
-import ProductView from "../products/buy/view"
+import ProductView from "../product/buy/view"
 import ProductDiscussionView from "../products/discuss/view"
 import SurveysView from "../surveys/view"
 import SurveysCommunityView from "../surveys/community/view"
@@ -18,14 +18,23 @@ export default ({ state, actions }) =>
     <div class="container">
         <Route path="/all-communities" render={()=>{
             if (isAuthenticated())  {
-                return <Communities fetchAllProducts={actions.fetchAllProducts} products={state.products}/>
+                return <Communities 
+                    fetchAllProducts={actions.fetchAllProducts} 
+                    products={state.products}
+                    isFetching={state.isFetching}
+                />
             } else {
                 return <Unprotected/>
             }
         }} />    
         <Route path="/buy/:productId" render={({match})=>{
             console.log('buy product')
-            return isAuthenticated() ? <ProductView match={match} fetchProduct={actions.fetchProduct} product={state.product}/> : <Unprotected/>
+            return isAuthenticated() ? <ProductView 
+                match={match} 
+                fetchProduct={actions.fetchProduct} 
+                product={state.product}
+                isFetching={state.isFetching}
+            /> : <Unprotected/>
         }} />
         <Route path="/community/:communityName" render={({match})=>{
             return isAuthenticated() ? <CommunityView match={match}/> : <Unprotected/>

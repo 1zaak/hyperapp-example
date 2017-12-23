@@ -1,6 +1,7 @@
 import { h } from "hyperapp"
 import { chunk } from "../_utils/index"
 import { Link } from "@hyperapp/router"
+import Loader from "../_assets/loader"
 
 // @TODO: Stuff to put in product card
 // - Product Name
@@ -45,11 +46,11 @@ export const ProductsRow = ({row}) => {
     </div>
 }
     
-export const Communities = ({products, fetchAllProducts}) => {
+export const Communities = ({products, fetchAllProducts, isFetching}) => {
     let rows = chunk(products, 4)
     return <div oncreate={fetchAllProducts}>
         {
-            rows.map(row=>(<ProductsRow row={row}/>))
+            !isFetching ? rows.map(row=>(<ProductsRow row={row}/>)) : <Loader colour={"black"}/>
         }
     </div>     
 }

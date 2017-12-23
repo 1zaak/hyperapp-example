@@ -4,5 +4,6 @@ export default {
     products: [],
     product: {},
     location: location.state,
-    mobileNavbarMenu: { toggled: false, className: "navbar-menu" }
+    mobileNavbarMenu: { toggled: false, className: "navbar-menu" },
+    isFetching: false,
 }
