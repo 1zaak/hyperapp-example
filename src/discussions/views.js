@@ -2,15 +2,18 @@ import { h } from "hyperapp"
 import { Link } from "@hyperapp/router"
 import DiscussionView from "./discussion/view"
 import Loader from "../_assets/loader"
+import distanceInWordsToNow from "date-fns/distance_in_words_to_now"
+import { dangerouslySetInnerHTML } from "../_utils"
 
 /** @jsx h */
 export default ({fetchDiscussions, discussions, isFetching}) => 
   {
     return <div key="discussions" oncreate={fetchDiscussions}>
         {
-            !isFetching ? discussions.map(discussion=>(
-              <Link to="/discussion/1">
-                <div class="box">
+            !isFetching ? discussions.map(discussion=>{
+              {console.log('discussion', discussion)}
+              return <Link to="/discussion/1" class="box">
+                <div class="level">
                   <article class="media">
                     <div class="media-left">
                       <figure class="image is-64x64">
@@ -20,10 +23,11 @@ export default ({fetchDiscussions, discussions, isFetching}) =>
                     <div class="media-content">
                       <div class="content">
                         <p>
-                          <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+                          <strong>{discussion.discussion_title}</strong> <small>@johnsmith</small> <small>{distanceInWordsToNow(discussion.updated_at, {addSuffix: true})}</small>
                           <br/>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+                         
                         </p>
+                        <div oncreate={dangerouslySetInnerHTML(discussion.discussion_post)}></div>                        
                       </div>
                       <nav class="level is-mobile">
                         <div class="level-left">
@@ -41,8 +45,8 @@ export default ({fetchDiscussions, discussions, isFetching}) =>
                     </div>
                   </article>
                 </div>
-                </Link>
-            )) : <Loader colour={"black"}/>
+              </Link>
+            }) : <Loader colour={"black"}/>
         }
     </div>   
   }

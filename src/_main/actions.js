@@ -2,7 +2,7 @@ import { location } from "@hyperapp/router"
 import client from "./api-client"
 import { login, handleAuthentication, logout } from "../_auth/auth"
 import CommunitiesActions from "../communities/actions"
-import ProductActions from "../products/buy/actions"
+import ProductActions from "../product/buy/actions"
 import DiscussionsActions from "../discussions/actions"
 
 export default {
