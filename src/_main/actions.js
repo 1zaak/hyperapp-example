@@ -12,6 +12,8 @@ export default {
     setProduct: ProductActions.setProduct,
     fetchDiscussions: DiscussionsActions.fetchDiscussions,
     setDiscussions: DiscussionsActions.setDiscussions,
+    fetchMessages: DiscussionsActions.fetchMessages,
+    setMessages: DiscussionsActions.setMessages,
     toggleFetching: isFetching => ({ isFetching }),
     login: () => state => {
         login()

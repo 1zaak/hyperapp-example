@@ -44,7 +44,12 @@ export default ({ state, actions }) =>
             /> : <Unprotected/>
         }} />
         <Route path="/discussion/:discussionId" render={({match})=>{
-            return isAuthenticated() ? <DiscussionView match={match}/> : <Unprotected/>
+            return isAuthenticated() ? <DiscussionView 
+                match={match}
+                fetchMessages={actions.fetchMessages} 
+                messages={state.messages}
+                isFetching={state.isFetching}
+            /> : <Unprotected/>
         }} />
         <Route path="/create-discussion" render={()=>{
             return isAuthenticated() ? <CreateDiscussionView/> : <Unprotected/>

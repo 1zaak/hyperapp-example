@@ -1,12 +1,10 @@
 import client from "../_main/api-client"
 
 export default {
-    fetchDiscussions: query => async (state, actions) => {   
-        console.log('fetchDiscussions')
+    fetchDiscussions: () => async (state, actions) => {           
         actions.toggleFetching(true)
         actions.setDiscussions(await client.getItems('discussion')
-            .then(res => {
-                console.log('fetch discussions', res)
+            .then(res => {                
                 actions.toggleFetching(false)    
                 return res.data
             })
@@ -19,8 +17,7 @@ export default {
     fetchDiscussion: discussionId => async (state, actions) => {  
         actions.toggleFetching(true)         
         actions.setDiscussion(await client.getItem('discussion', discussionId)
-            .then(res => {
-                console.log('response discussion', res)
+            .then(res => {                
                 actions.toggleFetching(false)  
                 return res.data
             })
@@ -30,5 +27,21 @@ export default {
             })
         )
     },
-    setDiscussions: discussions => state => ({ discussions })
+    setDiscussions: discussions => state => ({ discussions }),
+    fetchMessages: discussionId => async (state, actions) => {           
+        actions.toggleFetching(true)
+        actions.setMessages(await client.getItems('message', {
+            'filters[from_discussion]': discussionId
+        }).then(res => {                
+                actions.toggleFetching(false)   
+                console.log('messages',res) 
+                return res.data
+            })
+            .catch(err => {
+                actions.toggleFetching(false)
+                console.log('messages error',err)
+            })
+        )
+    },
+    setMessages: messages => state => ({ messages }),
 }

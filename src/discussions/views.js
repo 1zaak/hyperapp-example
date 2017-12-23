@@ -5,14 +5,19 @@ import Loader from "../_assets/loader"
 import distanceInWordsToNow from "date-fns/distance_in_words_to_now"
 import { dangerouslySetInnerHTML } from "../_utils"
 
+// @TODO: Stuff to put in discussion
+// - actual user details @TODO: Add auth0 user details in our DB
+// - # of messages
+// - main image? @TODO: input for user
+// - DOMPurify the dangerouslySetInnerHTML function
+
 /** @jsx h */
 export default ({fetchDiscussions, discussions, isFetching}) => 
   {
     return <div key="discussions" oncreate={fetchDiscussions}>
         {
             !isFetching ? discussions.map(discussion=>{
-              {console.log('discussion', discussion)}
-              return <Link to="/discussion/1" class="box">
+              return <Link to={"/discussion/" + discussion.id} class="box">
                 <div class="level">
                   <article class="media">
                     <div class="media-left">

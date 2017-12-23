@@ -8,5 +8,6 @@ export default {
     isFetching: false,
     surveys: [],
     survey: {},
-    discussions: []
+    discussions: [],
+    messages: []
 }
