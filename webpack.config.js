@@ -2,13 +2,24 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionPlugin = require("compression-webpack-plugin")
 
 const plugins = [
   // new ExtractTextPlugin({
   //   filename: 'bin/bundle.css',
   //   allChunks: true,
   // }),
-  // new webpack.optimize.ModuleConcatenationPlugin(),
+  new webpack.optimize.ModuleConcatenationPlugin(),
+  new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"'
+  }),
+  new CompressionPlugin({
+    algorithm: 'gzip',
+    cache: true,
+    test: /\.(css|js)$/,
+  })
+  // new BundleAnalyzerPlugin()
 ];
 
 module.exports = function webpackStuff(env) {
@@ -17,7 +28,8 @@ module.exports = function webpackStuff(env) {
   return {
     entry: [
       'babel-polyfill',
-      './src/index.js'
+      './src/index.js',
+      './src/_styles/main.scss'
     ],
     output: {
       filename: 'bin/bundle.js',
@@ -36,10 +48,40 @@ module.exports = function webpackStuff(env) {
         include: [
           path.resolve(__dirname, './'),
         ]
-      },{
+      },
+      {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
-      }
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'bundle.css',
+              outputPath: 'bin/'
+            }
+          },
+          {
+            loader: 'clean-css-loader',
+            options: {
+              compatibility: 'ie9',
+              level: 2,
+              inline: ['remote']
+            }
+          },
+          {
+            loader: 'extract-loader'
+          },
+          {
+            loader: 'css-loader', 
+            options: { minimize: true }
+          },
+          {
+            loader: 'postcss-loader'
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
+      },
   ],
     },
     plugins,

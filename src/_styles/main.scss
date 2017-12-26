@@ -5,7 +5,6 @@
 // You can easily customize Bulma with your own variables.
 // Just uncomment the following block to see the result.
 
-
 // 1. Import the initial variables
 @import "../../node_modules/bulma/sass/utilities/initial-variables";
 // 2. Set your own initial variables
@@ -22,7 +21,12 @@ $primary: $pink;
 $primary-invert: $pink-invert;
 // 4. Import the rest of Bulma
 
-
+// @import "../../node_modules/bulma/sass/utilities/_all";
+// @import "../../node_modules/bulma/sass/base/_all";
+// @import "../../node_modules/bulma/sass/elements/_all";
+// @import "../../node_modules/bulma/sass/components/_all";
+// @import "../../node_modules/bulma/sass/grid/_all";
+// @import "../../node_modules/bulma/sass/layout/_all";
 @import "../../node_modules/bulma/bulma";
 @import "font.scss";
 

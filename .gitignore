@@ -1,5 +1,5 @@
 node_modules
 .vscode
 npm-debug.log
-bin/bundle.js
-bin/bundle.css
+bin
+bin
