@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionPlugin = require("compression-webpack-plugin")
+const Dotenv = require('dotenv-webpack');
 
 const plugins = [
   // new ExtractTextPlugin({
@@ -11,9 +12,6 @@ const plugins = [
   //   allChunks: true,
   // }),
   new webpack.optimize.ModuleConcatenationPlugin(),
-  new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
-  }),
   new CompressionPlugin({
     algorithm: 'gzip',
     cache: true,
@@ -23,8 +21,16 @@ const plugins = [
 ];
 
 module.exports = function webpackStuff(env) {
-  if (env === 'production') plugins.push(new MinifyPlugin());
-
+  if (env === 'production') {
+    plugins.push(new MinifyPlugin());
+    plugins.push(new Dotenv({
+      path: './.env.production'      
+    }))
+  } else {
+    plugins.push(new Dotenv({
+      path: './.env.local' 
+    }))
+  }
   return {
     entry: [
       'babel-polyfill',

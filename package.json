@@ -9,6 +9,7 @@
     "babel-polyfill": "^6.26.0",
     "date-fns": "^1.29.0",
     "directus-sdk-javascript": "^2.3.1",
+    "dotenv-webpack": "^1.5.4",
     "history": "^4.7.2",
     "hyperapp": "^0.18.0",
     "lodash": "^4.17.4",
@@ -47,7 +48,8 @@
     "webpack-dev-server": "^2.9.7"
   },
   "scripts": {
-    "build": "webpack --env production --hide-modules",
+    "build": "webpack --env --hide-modules",
+    "build:prod": "webpack --env production --hide-modules",
     "start": "npm run build && webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
